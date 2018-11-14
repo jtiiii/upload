@@ -20,9 +20,9 @@ public class FilesCorsFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        response.setHeader("Access-Control-Allow-Headers","*");
-        response.setHeader("Access-Control-Allow-Methods","GET, PUT, DELETE, POST");
-        response.addHeader("Access-Control-Allow-Origin", "*");
+//        response.setHeader("Access-Control-Allow-Headers","*");
+//        response.setHeader("Access-Control-Allow-Methods","GET, PUT, DELETE, POST");
+//        response.addHeader("Access-Control-Allow-Origin", "*");
 
         filterChain.doFilter(request,response);
     }

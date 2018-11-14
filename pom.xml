@@ -7,82 +7,128 @@
   <groupId>com.funeral</groupId>
   <artifactId>upload</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
 
   <name>upload Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
   <url>https://github.com/jtiiii/upload</url>
 
+    <!-- using spring-boot -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.0.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
 
-      <jackson.version>2.8.8</jackson.version>
-      <spring.version>4.3.9.RELEASE</spring.version>
-      <spring.security.version>4.2.3.RELEASE</spring.security.version>
+    <!--<maven.compiler.source>1.8</maven.compiler.source>-->
+    <!--<maven.compiler.target>1.8</maven.compiler.target>-->
 
-      <tomcat.deploy.url>http://localhost:8080/manager/text</tomcat.deploy.url>
-      <tomcat.deploy.username>admin</tomcat.deploy.username>
-      <tomcat.deploy.password>123</tomcat.deploy.password>
+
+      <!--<jackson.version>2.8.11</jackson.version>-->
+      <!--<spring.version>4.3.18.RELEASE</spring.version>-->
+      <!--<spring.security.version>4.2.9.RELEASE</spring.security.version>-->
+
+      <!--<tomcat.deploy.url>http://localhost:8080/manager/text</tomcat.deploy.url>-->
+      <!--<tomcat.deploy.username>admin</tomcat.deploy.username>-->
+      <!--<tomcat.deploy.password>123</tomcat.deploy.password>-->
+      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+      <java.version>1.8</java.version>
   </properties>
+
+
+
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>junit</groupId>-->
+      <!--<artifactId>junit</artifactId>-->
+      <!--<version>4.11</version>-->
+      <!--<scope>test</scope>-->
+    <!--</dependency>-->
     <!-- spring -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-beans</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-aop</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-core</artifactId>-->
+      <!--<version>${spring.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-context</artifactId>-->
+      <!--<version>${spring.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-beans</artifactId>-->
+      <!--<version>${spring.version}</version>-->
+    <!--</dependency>-->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-aop</artifactId>
+          <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.aspectj</groupId>
+          <artifactId>aspectjrt</artifactId>
+          <version>${aspectj.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.aspectj</groupId>
+          <artifactId>aspectjweaver</artifactId>
+          <version>${aspectj.version}</version>
+      </dependency>
+
+      <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-jdbc</artifactId>-->
+      <!--<version>${spring.version}</version>-->
+    <!--</dependency>-->
 
     <!-- spring-web -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-web</artifactId>-->
+      <!--<version>${spring.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-webmvc</artifactId>-->
+      <!--<version>${spring.version}</version>-->
+    <!--</dependency>-->
 
       <!-- spring security -->
+      <!--<dependency>-->
+          <!--<groupId>org.springframework.security</groupId>-->
+          <!--<artifactId>spring-security-web</artifactId>-->
+          <!--<version>${spring.security.version}</version>-->
+      <!--</dependency>-->
+      <!--<dependency>-->
+          <!--<groupId>org.springframework.security</groupId>-->
+          <!--<artifactId>spring-security-config</artifactId>-->
+          <!--<version>${spring.security.version}</version>-->
+      <!--</dependency>-->
+
+      <!--<dependency>-->
+          <!--<groupId>org.springframework.boot</groupId>-->
+          <!--<artifactId>spring-boot-starter-security</artifactId>-->
+      <!--</dependency>-->
       <dependency>
-          <groupId>org.springframework.security</groupId>
-          <artifactId>spring-security-web</artifactId>
-          <version>${spring.security.version}</version>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-web</artifactId>
       </dependency>
+
       <dependency>
-          <groupId>org.springframework.security</groupId>
-          <artifactId>spring-security-config</artifactId>
-          <version>${spring.security.version}</version>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-test</artifactId>
+          <scope>test</scope>
       </dependency>
+      <!--<dependency>-->
+          <!--<groupId>org.springframework.security</groupId>-->
+          <!--<artifactId>spring-security-test</artifactId>-->
+          <!--<scope>test</scope>-->
+      <!--</dependency>-->
 
     <!-- javax-servlet -->
     <dependency>
@@ -97,21 +143,21 @@
     </dependency>
 
     <!-- jackson -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-      <version>${jackson.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-annotations</artifactId>
-      <version>${jackson.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>${jackson.version}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>com.fasterxml.jackson.core</groupId>-->
+      <!--<artifactId>jackson-core</artifactId>-->
+      <!--<version>${jackson.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>com.fasterxml.jackson.core</groupId>-->
+      <!--<artifactId>jackson-annotations</artifactId>-->
+      <!--<version>${jackson.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>com.fasterxml.jackson.core</groupId>-->
+      <!--<artifactId>jackson-databind</artifactId>-->
+      <!--<version>${jackson.version}</version>-->
+    <!--</dependency>-->
 
 
       <!-- hibernate-validation
@@ -122,22 +168,21 @@
           <artifactId>hibernate-validator</artifactId>
           <version>6.0.10.Final</version>
           <exclusions>
-
           </exclusions>
       </dependency>
       <!-- 对hibernate-validation 的el-api支持 -->
-      <dependency>
-          <groupId>org.glassfish</groupId>
-          <artifactId>javax.el</artifactId>
-          <version>3.0.1-b09</version>
-      </dependency>
+      <!--<dependency>-->
+          <!--<groupId>org.glassfish</groupId>-->
+          <!--<artifactId>javax.el</artifactId>-->
+          <!--<version>3.0.1-b09</version>-->
+      <!--</dependency>-->
 
       <!-- yaml -->
-      <dependency>
-          <groupId>org.yaml</groupId>
-          <artifactId>snakeyaml</artifactId>
-          <version>1.21</version>
-      </dependency>
+      <!--<dependency>-->
+          <!--<groupId>org.yaml</groupId>-->
+          <!--<artifactId>snakeyaml</artifactId>-->
+          <!--<version>1.21</version>-->
+      <!--</dependency>-->
 
       <!-- file-upload -->
       <dependency>
@@ -152,89 +197,93 @@
 
   <build>
     <finalName>upload</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-      <plugins>
-        <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.0.0</version>
-        </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.7.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.20.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>3.2.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
+    <!--<pluginManagement>&lt;!&ndash; lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) &ndash;&gt;-->
+      <!--<plugins>-->
+        <!--<plugin>-->
+          <!--<artifactId>maven-clean-plugin</artifactId>-->
+          <!--<version>3.0.0</version>-->
+        <!--</plugin>-->
+        <!--&lt;!&ndash; see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging &ndash;&gt;-->
+        <!--<plugin>-->
+          <!--<artifactId>maven-resources-plugin</artifactId>-->
+          <!--<version>3.0.2</version>-->
+        <!--</plugin>-->
+        <!--<plugin>-->
+          <!--<artifactId>maven-compiler-plugin</artifactId>-->
+          <!--<version>3.7.0</version>-->
+        <!--</plugin>-->
+        <!--<plugin>-->
+          <!--<artifactId>maven-surefire-plugin</artifactId>-->
+          <!--<version>2.20.1</version>-->
+        <!--</plugin>-->
+        <!--<plugin>-->
+          <!--<artifactId>maven-war-plugin</artifactId>-->
+          <!--<version>3.2.0</version>-->
+        <!--</plugin>-->
+        <!--<plugin>-->
+          <!--<artifactId>maven-install-plugin</artifactId>-->
+          <!--<version>2.5.2</version>-->
+        <!--</plugin>-->
+        <!--<plugin>-->
+          <!--<artifactId>maven-deploy-plugin</artifactId>-->
+          <!--<version>2.8.2</version>-->
+        <!--</plugin>-->
+      <!--</plugins>-->
+    <!--</pluginManagement>-->
       <plugins>
           <!-- 采用1.8编译 -->
+          <!--<plugin>-->
+              <!--<groupId>org.apache.maven.plugins</groupId>-->
+              <!--<artifactId>maven-compiler-plugin</artifactId>-->
+              <!--<configuration>-->
+                  <!--<source>1.8</source>-->
+                  <!--<target>1.8</target>-->
+              <!--</configuration>-->
+              <!--<version>3.7.0</version>-->
+          <!--</plugin>-->
+          <!--<plugin>-->
+              <!--<groupId>org.eclipse.jetty</groupId>-->
+              <!--<artifactId>jetty-maven-plugin</artifactId>-->
+              <!--<version>9.2.6.v20141205</version>-->
+              <!--<configuration>-->
+                  <!--&lt;!&ndash;<jettyConfig>${project.basedir}/src/main/resources/config/jetty.xml,${project.basedir}/src/main/resources/config/jetty-ssl.xml,${project.basedir}/src/main/resources/config/jetty-https.xml</jettyConfig>&ndash;&gt;-->
+                  <!--<stopKey>STOP</stopKey>-->
+                  <!--<stopPort>9999</stopPort>-->
+                  <!--&lt;!&ndash;<stopWait>5</stopWait>&ndash;&gt;-->
+                  <!--<scanIntervalSeconds>5</scanIntervalSeconds>-->
+
+                  <!--<httpConnector>-->
+
+                      <!--<port>4000</port>-->
+
+                  <!--</httpConnector>-->
+                  <!--<scanTargets>-->
+                      <!--<scanTarget>${project.basedir}/src/main</scanTarget>-->
+                  <!--</scanTargets>-->
+                  <!--<webAppConfig>-->
+                      <!--<contextPath>/${project.artifactId}</contextPath>-->
+                  <!--</webAppConfig>-->
+              <!--</configuration>-->
+          <!--</plugin>-->
           <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-compiler-plugin</artifactId>
-              <configuration>
-                  <source>1.8</source>
-                  <target>1.8</target>
-              </configuration>
-              <version>3.7.0</version>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-maven-plugin</artifactId>
           </plugin>
-          <plugin>
-              <groupId>org.eclipse.jetty</groupId>
-              <artifactId>jetty-maven-plugin</artifactId>
-              <version>9.2.6.v20141205</version>
-              <configuration>
-                  <!--<jettyConfig>${project.basedir}/src/main/resources/config/jetty.xml,${project.basedir}/src/main/resources/config/jetty-ssl.xml,${project.basedir}/src/main/resources/config/jetty-https.xml</jettyConfig>-->
-                  <stopKey>STOP</stopKey>
-                  <stopPort>9999</stopPort>
-                  <!--<stopWait>5</stopWait>-->
-                  <scanIntervalSeconds>5</scanIntervalSeconds>
+          <!--<plugin>-->
+              <!--<groupId>org.apache.tomcat.maven</groupId>-->
+              <!--<artifactId>tomcat7-maven-plugin</artifactId>-->
+              <!--<version>2.2</version>-->
+              <!--<configuration>-->
+                  <!--<url>${tomcat.deploy.url}</url>-->
+                  <!--&lt;!&ndash;<server>localTomcat8</server>&ndash;&gt;-->
+                  <!--<path>/upload</path>-->
+                  <!--<username>${tomcat.deploy.username}</username>-->
+                  <!--<password>${tomcat.deploy.password}</password>-->
+                  <!--<charset>utf8</charset>-->
+                  <!--<update>true</update>-->
+              <!--</configuration>-->
 
-                  <httpConnector>
-
-                      <port>4000</port>
-
-                  </httpConnector>
-                  <scanTargets>
-                      <scanTarget>${project.basedir}/src/main</scanTarget>
-                  </scanTargets>
-                  <webAppConfig>
-                      <contextPath>/${project.artifactId}</contextPath>
-                  </webAppConfig>
-              </configuration>
-          </plugin>
-          <plugin>
-              <groupId>org.apache.tomcat.maven</groupId>
-              <artifactId>tomcat7-maven-plugin</artifactId>
-              <version>2.2</version>
-              <configuration>
-                  <url>${tomcat.deploy.url}</url>
-                  <!--<server>localTomcat8</server>-->
-                  <path>/upload</path>
-                  <username>${tomcat.deploy.username}</username>
-                  <password>${tomcat.deploy.password}</password>
-                  <charset>utf8</charset>
-                  <update>true</update>
-              </configuration>
-
-          </plugin>
+          <!--</plugin>-->
       </plugins>
   </build>
 </project>

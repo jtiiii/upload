@@ -3,6 +3,7 @@ package com.funeral.upload.controller;
 import com.funeral.upload.entity.LoginUser;
 import com.funeral.upload.service.user.UserService;
 import com.funeral.upload.util.TimeUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Logger;
 
 /**
  * 登陆controller
@@ -41,9 +41,10 @@ public class LoginController {
     private static final Long EXPIRE_TIME = 1200000L;
 
     @PostMapping
-    public String login(@Valid @RequestBody LoginUser loginUser){
+    public String login(@Valid @RequestBody LoginUser loginUser, BindingResult bindingResult){
         LoginUser user = UserService.findUser(loginUser.getUsername());
         if(user == null || !user.getPassword().equals( loginUser.getPassword() )){
+//            throw new IllegalArgumentException("Zai? Bu zai,Cao ni ma!");
             return null;
         }
         String token = newToken();
