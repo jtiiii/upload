@@ -1,6 +1,7 @@
 package com.funeral.upload;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.funeral.upload.service.TestService;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
@@ -20,6 +21,7 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -62,6 +64,9 @@ public class UploadApplicationTests {
 				.andExpect(status().isOk())
 				.andDo(print())
 				.andReturn();
+
+		Map<String,String> test =new HashMap<>();
+
 	}
 
 	@After

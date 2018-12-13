@@ -1,10 +1,14 @@
-package com.funeral.upload.service.user;
+package com.funeral.upload.service;
 
 import com.funeral.upload.entity.LoginUser;
 import com.funeral.upload.entity.LoginUserList;
+import com.funeral.upload.security.User;
 import com.funeral.upload.util.YamlUtils;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -14,7 +18,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author FuneralObjects 张峰
  * CreateTime 2018/6/5 2:50 PM
  */
-public class UserService {
+@Service
+public class UserServiceImpl implements UserDetailsService {
     /**
      * 所有用户
      */
@@ -33,4 +38,12 @@ public class UserService {
         return USERS.get(username);
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        LoginUser user = findUser(username);
+        if(user == null){
+            throw new UsernameNotFoundException("Unable to find eligible user.");
+        }
+        return new User(user.getUsername(),user.getPassword(),true,true);
+    }
 }

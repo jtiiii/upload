@@ -1,4 +1,4 @@
-package com.funeral.upload.handles;
+package com.funeral.upload.handler;
 
 import com.funeral.upload.exception.RestControllerException;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,7 +16,7 @@ import java.io.IOException;
  * CreateTime 2018/11/13 12:12 AM
  */
 @RestControllerAdvice
-public class RestControllerHandle {
+public class RestControllerHandler {
 
     @Value("${internal_server_error}")
     private String INTERNAL_SERVER_ERROR;

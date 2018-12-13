@@ -1,7 +1,7 @@
 package com.funeral.upload.controller;
 
 import com.funeral.upload.entity.LoginUser;
-import com.funeral.upload.service.user.UserService;
+import com.funeral.upload.service.UserServiceImpl;
 import com.funeral.upload.util.TimeUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * CreateTime 2018/6/5 2:26 PM
  */
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/login-test")
 public class LoginController {
     /**
      * 在线用户
@@ -42,9 +42,8 @@ public class LoginController {
 
     @PostMapping
     public String login(@Valid @RequestBody LoginUser loginUser, BindingResult bindingResult){
-        LoginUser user = UserService.findUser(loginUser.getUsername());
+        LoginUser user = UserServiceImpl.findUser(loginUser.getUsername());
         if(user == null || !user.getPassword().equals( loginUser.getPassword() )){
-//            throw new IllegalArgumentException("Zai? Bu zai,Cao ni ma!");
             return null;
         }
         String token = newToken();
