@@ -1,0 +1,8 @@
+use: developement
+servers:
+  production:
+    address: ''
+    port: 80
+  developement:
+    address: http://localhost
+    port: 9000
