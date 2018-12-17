@@ -51,21 +51,21 @@ public class UploadApplicationTests {
 
 	@Test
 	public void contextLoads() throws Exception {
-		File file = ResourceUtils.getFile("classpath:test-user.json");
-//		String jsonStr = FileUtils.readFileToString(file,"UTF-8");
-		ObjectMapper objectMapper = new ObjectMapper();
-		Map map = objectMapper.readValue(file, Map.class);
-		String t_content = objectMapper.writeValueAsString(map.get("F"));
-		MvcResult mr = mvc.perform(
-				post("/login")
-						.content(t_content)
-						.contentType(MediaType.APPLICATION_JSON_UTF8)
-						.accept(MediaType.APPLICATION_JSON_UTF8))
-				.andExpect(status().isOk())
-				.andDo(print())
-				.andReturn();
-
-		Map<String,String> test =new HashMap<>();
+//		File file = ResourceUtils.getFile("classpath:test-user.json");
+////		String jsonStr = FileUtils.readFileToString(file,"UTF-8");
+//		ObjectMapper objectMapper = new ObjectMapper();
+//		Map map = objectMapper.readValue(file, Map.class);
+//		String t_content = objectMapper.writeValueAsString(map.get("F"));
+//		MvcResult mr = mvc.perform(
+//				post("/login")
+//						.content(t_content)
+//						.contentType(MediaType.APPLICATION_JSON_UTF8)
+//						.accept(MediaType.APPLICATION_JSON_UTF8))
+//				.andExpect(status().isOk())
+//				.andDo(print())
+//				.andReturn();
+//
+//		Map<String,String> test =new HashMap<>();
 
 	}
 

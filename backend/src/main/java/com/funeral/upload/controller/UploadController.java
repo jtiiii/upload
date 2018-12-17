@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 @RestController
 public class UploadController {
 
-    private static final String FILE_DIR = "/files/";
+    private static final String FILE_DIR = "/files";
 
     @PostMapping("/uploadFile")
     public String uploadFile(@RequestParam("file") MultipartFile file, HttpServletRequest request){
@@ -28,8 +28,12 @@ public class UploadController {
             return "failed";
         }
 
-        String filePath = request.getServletContext().getRealPath("/files/");
+        String filePath = request.getServletContext().getRealPath(FILE_DIR);
         String fileName = file.getOriginalFilename();
+        File folder = new File(filePath);
+        if (!folder.exists()){
+            folder.mkdir();
+        }
         File newFile = new File(filePath,fileName);
         try {
             file.transferTo(newFile);

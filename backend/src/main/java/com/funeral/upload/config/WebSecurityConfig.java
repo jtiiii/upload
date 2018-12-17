@@ -54,6 +54,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                    //对files请求不进行拦截
+                    .antMatchers("/files/**").permitAll()
                     //对所有请求配置
                     .anyRequest()
                     //开启认证
@@ -83,9 +85,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
 //                .disable()
                     //login地址不进行远程防御
-                    .ignoringAntMatchers("/login")
+                    .ignoringAntMatchers("/login","/logout")
                     //使用cookie方式进行token配置
-                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+//                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                     .and()
                 //发生异常时的处理
                 .exceptionHandling()
