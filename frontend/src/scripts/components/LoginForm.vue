@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-form class="loginForm" @submit="doLogin" method="post">
+        <b-form v-if="!loginState" class="loginForm" @submit="doLogin" method="post">
             <b-form-group label="Account"
                           label-for="input-account">
                 <b-form-input id="input-account"
@@ -17,8 +17,11 @@
             </b-form-group>
             <b-button variant="info" type="submit">Login</b-button>
         </b-form>
-        <b-button variant="warning" type="button" @click="doLogout" >Logout</b-button>
-        <div>{{ testForm }}</div>
+        <div v-else class="loginForm">
+            <p>Login Account: <b>{{ this.account }}</b></p>
+            <b-button variant="warning" type="button" @click="doLogout" >Logout</b-button>
+        </div>
+
     </div>
 </template>
 <script type="text/javascript">
@@ -28,18 +31,28 @@
             return {
                 "account":"",
                 "password":"",
-                "testForm":""
+                "loginState": false
             }
         },
         methods:{
             doLogin(e){
                 e.preventDefault();
                 LoginApi.login(this.account,this.password).then( data => {
-                    this.testForm = data;
+                    this.loginSuccess();
                 });
             },
             doLogout(){
-                LoginApi.logout();
+                LoginApi.logout().then( data => {
+                    this.loginState = false;
+                    this.$emit("logout");
+                });
+            },
+            loginSuccess( account ){
+                if(account){
+                    this.account = account;
+                }
+                this.$emit("loginSuccess",this.account);
+                this.loginState = true;
             }
         }
     };

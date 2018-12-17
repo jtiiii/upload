@@ -1,8 +1,10 @@
-use: developement
+use: production
 servers:
   production:
-    address: ''
+    address: 'http://tomcat.funeralobjects.cn'
     port: 80
+    contextPath: '/upload-service'
   developement:
     address: http://localhost
     port: 9000
+    contextPath: '/upload-service'

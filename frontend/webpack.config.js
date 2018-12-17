@@ -4,4 +4,4 @@ const production = commons.extend({
     mode: 'production',
     entry: './src/scripts/main.js'
 });
-module.exports = development;
+module.exports = production;

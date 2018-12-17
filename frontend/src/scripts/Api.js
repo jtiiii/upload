@@ -8,13 +8,16 @@ const request = _axios.create({
 });
 const axios ={
     get(url,options){
-        return request.post(url,options);
+        return request.get(url,options).then( getHandle ).catch( errorHandle );
     },
     post( url, data, options){
         return request.post(url, data,options).then( postHandle ).catch( errorHandle );
     }
 };
 window.axios = _axios;
+function getHandle(response){
+    return response.data;
+}
 function postHandle(response){
     return response.data;
 }
@@ -30,12 +33,13 @@ const LoginApi = {
         const param = new URLSearchParams();
         param.append("username",username);
         param.append("password",password);
-        return request.post('/login',param)
-            .then( response => {
-                Api._config_.xsrfCookieName = response.config.xsrfCookieName;
-                Api._config_.xsrfHeaderName = response.config.xsrfHeaderName;
+        return axios.post('/login',param)
+            .then( data => {
+                let token = data.split(":");
+                Api._config_.xsrfHeaderName = token[0];
                 Api._config_.loginUser = username;
-                console.log( username +' login success.',response);
+                Api._config_.token= token[1];
+                console.log( username +' login success.');
                 return username;
             });
     },
@@ -49,38 +53,33 @@ const LoginApi = {
 const Api = {
     _config_:{
         loginUser: '',
-        xsrfCookieName: '',
         xsrfHeaderName: '',
-        JSESSIONID: '',
+        token: ''
+    },
+    _withTokenHeader_: function(){
+        let headers = {};
+        headers[this._config_.xsrfHeaderName]=this._config_.token;
+        return headers;
     },
     connectTest(){
         return axios.post('/test');
     },
-    _setConfiig_(username,xsrfCookieName,xsrfHeaderName,JSESSIONID){
-        this._config_.loginUser = username;
-        this._config_.xsrfCookieName = xsrfCookieName;
-        this._config_.xsrfHeaderName = xsrfHeaderName;
-        this._config_.JSESSIONID = JSESSIONID;
-    },
-    _cleanConfig_(){
-        this._config_ = {
-            loginUser: '',
-            xsrfCookieName: '',
-            xsrfHeaderName: '',
-            JSESSIONID: '',
-        };
-    },
     upload(file) {
         let formData = new FormData();
         formData.append("file",file);
-        return request.post('/uploadFile',formData,{
-            headers:{
-                "Content-Type": "multipart/form-data"
-            }
+        let headers = this._withTokenHeader_();
+        headers["Content-Type"]="multipart/form-data";
+        return axios.post('/uploadFile',formData,{
+            headers: headers
+        }).then(data =>{
+            return Server.path + data;
         });
     },
     getUploadProgress(){
-        return request.get("/uploadFile")
+        return axios.get("/uploadFile");
+    },
+    checkLogin(){
+        return axios.get("/check/login");
     }
 };
 export { LoginApi};

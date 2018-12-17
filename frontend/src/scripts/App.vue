@@ -1,9 +1,7 @@
 <template>
     <div>
-        <v-login-form ref="loginForm"></v-login-form>
-        <v-upload-form></v-upload-form>
-        <b-button variant="warning" @click="connectTest">Test Connect</b-button>
-        <span>Test result: {{ testResult }}</span>
+        <v-login-form ref="loginForm" @loginSuccess="loginSuccess" @logout="logout"></v-login-form>
+        <v-upload-form v-if="loginState"></v-upload-form>
     </div>
 </template>
 <script type="text/javascript">
@@ -18,14 +16,27 @@
         },
         data(){
             return {
-                testResult: '',
-                dplayer: null
+                loginState: false
             };
         },
         methods:{
-            connectTest(){
-                Api.connectTest().then( data => {this.testResult = data});
+            checkLogin(){
+                Api.checkLogin().then(data => {
+                    console.log("loginCheck",data);
+                    this.$refs['loginForm'].loginSuccess(data);
+                }).catch( error => {
+                    console.log("Not login.");
+                } );
+            },
+            loginSuccess( user ){
+                this.loginState = true;
+            },
+            logout(){
+                this.loginState =false;
             }
+        },
+        mounted(){
+            this.checkLogin();
         }
     }
 </script>
