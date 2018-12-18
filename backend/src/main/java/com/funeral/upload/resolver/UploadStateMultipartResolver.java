@@ -20,9 +20,6 @@ import java.util.List;
 public class UploadStateMultipartResolver extends CommonsMultipartResolver {
     public static final String SESSION_KEY = "upload-state";
 
-    public UploadStateMultipartResolver() {
-    }
-
     public UploadStateMultipartResolver(ServletContext servletContext) {
         super(servletContext);
     }
@@ -31,7 +28,7 @@ public class UploadStateMultipartResolver extends CommonsMultipartResolver {
     protected MultipartParsingResult parseRequest(HttpServletRequest request) throws MultipartException {
         String encoding = determineEncoding(request);
         FileUpload fileUpload = prepareFileUpload(encoding);
-//        UploadState state = (UploadState) request.getSession().getAttribute(SESSION_KEY);
+        //只要访问Multipart上传操作，就在Session中赋予一个上传状态
         UploadState state = new UploadState();
         request.getSession().setAttribute(UploadStateMultipartResolver.SESSION_KEY,state);
         fileUpload.setProgressListener((pBytesRead, pContentLength, pItems) -> {

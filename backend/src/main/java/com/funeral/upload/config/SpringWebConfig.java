@@ -43,26 +43,6 @@ public class SpringWebConfig implements WebMvcConfigurer {
 
     @Value("${upload.maxSize}")
     private Long UPLOAD_SIZE_MAX;
-//    @Override
-//    public void addCorsMappings(CorsRegistry registry) {
-//        registry.addMapping("/**")
-//                .allowCredentials(true)
-//                .allowedHeaders("*")
-//                .allowedMethods("*")
-//                .allowedOrigins("http://localhost:8081").maxAge(10800);
-//    }
-
-//    @Bean
-//    public CorsFilter corsFilter(){
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.addAllowedMethod("*");
-//        configuration.addAllowedHeader("*");
-//        configuration.setAllowCredentials(true);
-//        configuration.addAllowedOrigin("http://localhost:8081");
-//        source.registerCorsConfiguration("/**",configuration);
-//        return new CorsFilter(source);
-//    }
 
 
     @Override

@@ -71,7 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/login")
                     //登陆成功后的处理
                     .successHandler(successHandler)
-                    //登陆失败的处理
+                    //登陆失败的处理 -- 默认的话会自动重定向，并且生成form表单生成html代码
                     .failureHandler(failureHandler)
                     .and()
                 //关于登出的配置
@@ -83,11 +83,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 //对CSRF 远程防御的配置
                 .csrf()
-//                .disable()
                     //login地址不进行远程防御
-                    .ignoringAntMatchers("/login","/logout")
-                    //使用cookie方式进行token配置
-//                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                    .ignoringAntMatchers("/login")
+                    //默认采用LazyCsrfTokenRepository进行对request和response配置token，
+                    //使用cookie方式进行token配置 --> .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                    //不过遇到自动httpOnly的web容器，比如tomcat7，还是不建议使用cookie配置token
                     .and()
                 //发生异常时的处理
                 .exceptionHandling()
