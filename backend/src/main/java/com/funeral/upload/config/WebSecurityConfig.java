@@ -53,8 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     //对files请求不进行拦截
-                    //由于在Spring-MVC的config中设置了resource则，则同样不会被spring-security拦截（因为不是servlet了）
-                    //.antMatchers("/files/**").permitAll()
+                    .antMatchers("/files/**").permitAll()
                     //对所有请求配置
                     .anyRequest()
                     //开启认证
