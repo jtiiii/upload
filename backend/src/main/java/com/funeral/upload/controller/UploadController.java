@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 /**
  * 上传controller
  *
- * @author FuneralObjects 张峰
+ * @author FuneralObjects
  * CreateTime 2018/6/5 2:26 PM
  */
 @RestController
@@ -24,7 +24,7 @@ public class UploadController {
 
     private static final String FILE_DIR = "/files";
 
-    @PostMapping("/uploadFile")
+    @PostMapping(value = "/uploadFile",produces = "application/json; charset=utf-8")
     public String uploadFile(@RequestParam("file") MultipartFile file, HttpServletRequest request){
         if(file == null || file.isEmpty()){
             return "failed";
@@ -45,7 +45,6 @@ public class UploadController {
         UploadState state = (UploadState) request.getSession().getAttribute(UploadStateMultipartResolver.SESSION_KEY);
         state.setComplete(true);
         state.setPercent(new BigDecimal(1));
-
         return "/files/"+fileName;
 
     }
