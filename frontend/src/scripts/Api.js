@@ -11,6 +11,16 @@ const axios ={
         return request.get(url,options).then( getHandle ).catch( errorHandle );
     },
     post( url, data, options){
+        if(!options){
+            options = {};
+        }
+        if(options.headers){
+            options.headers[Api._config_.xsrfHeaderName] = Api._config_.token;
+        }else{
+            options.headers={
+                "X-CSRF-TOKEN":Api._config_.token
+            }
+        }
         return request.post(url, data,options).then( postHandle ).catch( errorHandle );
     }
 };
@@ -35,10 +45,8 @@ const LoginApi = {
         param.append("password",password);
         return axios.post('/login',param)
             .then( data => {
-                let token = data.split(":");
-                Api._config_.xsrfHeaderName = token[0];
-                Api._config_.loginUser = username;
-                Api._config_.token= token[1];
+                Api._config_.loginUser = data.account;
+                Api._config_.token= data.token;
                 console.log( username +' login success.');
                 return username;
             });
@@ -53,7 +61,7 @@ const LoginApi = {
 const Api = {
     _config_:{
         loginUser: '',
-        xsrfHeaderName: '',
+        xsrfHeaderName: "X-CSRF-TOKEN",
         token: ''
     },
     _withTokenHeader_: function(){
@@ -67,10 +75,10 @@ const Api = {
     upload(file) {
         let formData = new FormData();
         formData.append("file",file);
-        let headers = this._withTokenHeader_();
-        headers["Content-Type"]="multipart/form-data";
         return axios.post('/uploadFile',formData,{
-            headers: headers
+            headers: {
+                "Content-Type" : "multipart/form-data",
+            }
         }).then(data =>{
             return Server.path + data;
         });
@@ -79,7 +87,11 @@ const Api = {
         return axios.get("/uploadFile");
     },
     checkLogin(){
-        return axios.get("/check/login");
+        return axios.get("/check/login").then( data => {
+            Api._config_.loginUser = data.account;
+            Api._config_.token= data.token;
+            return data.account;
+        });
     }
 };
 export { LoginApi};

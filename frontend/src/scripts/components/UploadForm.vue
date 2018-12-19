@@ -4,7 +4,7 @@
         <p>Selected file: {{ file && file.name }}</p>
         <b-button variant="warning" type="button" @click="upload">Upload</b-button>
         <b-progress class="progress" :value="counter" :max="max" show-progress animated></b-progress>
-        <p v-show="url">URL: {{ url }}</p>
+        <p v-show="url">URL: <a :href="url" target="_blank">{{ url }}</a></p>
     </div>
 </template>
 <script type="text/javascript">
