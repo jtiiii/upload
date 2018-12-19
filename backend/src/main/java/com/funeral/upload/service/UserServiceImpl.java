@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 用户业务
  *
- * @author FuneralObjects 张峰
+ * @author FuneralObjects
  * CreateTime 2018/6/5 2:50 PM
  */
 @Service

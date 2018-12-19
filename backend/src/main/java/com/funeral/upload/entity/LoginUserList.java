@@ -3,7 +3,7 @@ package com.funeral.upload.entity;
 import java.util.List;
 
 /**
- * @author FuneralObjects 张峰
+ * @author FuneralObjects
  * CreateTime 2018/6/5 2:51 PM
  */
 public class LoginUserList {

@@ -1,6 +1,5 @@
 package com.funeral.upload.security;
 
-import org.springframework.security.web.csrf.CsrfToken;
 
 /**
  * 跨域使用的token
@@ -8,27 +7,20 @@ import org.springframework.security.web.csrf.CsrfToken;
  * @author FuneralObjects
  * CreateTime 2018/11/17 6:35 PM
  */
-public class Token implements CsrfToken {
-    private String headerName;
-    private String parameterName;
+public class Token{
+    private String account;
+    private String token;
 
-    public Token(String headerName, String parameterName) {
-        this.headerName = headerName;
-        this.parameterName = parameterName;
+    public Token(String account, String token) {
+        this.account = account;
+        this.token = token;
     }
 
-    @Override
-    public String getHeaderName() {
-        return this.headerName;
+    public String getAccount() {
+        return account;
     }
 
-    @Override
-    public String getParameterName() {
-        return this.parameterName;
-    }
-
-    @Override
     public String getToken() {
-        return this.parameterName;
+        return token;
     }
 }

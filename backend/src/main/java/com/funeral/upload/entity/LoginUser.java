@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 /**
  * 登陆用户
  *
- * @author FuneralObjects 张峰
+ * @author FuneralObjects
  * CreateTime 2018/6/5 2:29 PM
  */
 public class LoginUser {

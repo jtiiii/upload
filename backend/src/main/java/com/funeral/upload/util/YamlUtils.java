@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 读取Yaml文件的工具类
  *
- * @author FuneralObjects 张峰
+ * @author FuneralObjects
  * CreateTime 2018/5/23 3:39 PM
  */
 public class YamlUtils {
