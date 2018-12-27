@@ -10,7 +10,6 @@
     <packaging>war</packaging>
 
     <name>upload Maven Webapp</name>
-    <!-- FIXME change it to the project's website -->
     <url>https://github.com/jtiiii/upload</url>
 
     <!-- using spring-boot -->
@@ -75,22 +74,6 @@
             -->
             <scope>provided</scope>
         </dependency>
-
-          <!-- hibernate-validation
-            对javax.validation 的实现
-         -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>6.0.10.Final</version>
-        </dependency>
-
-          <!-- yaml -->
-          <!--<dependency>-->
-              <!--<groupId>org.yaml</groupId>-->
-              <!--<artifactId>snakeyaml</artifactId>-->
-              <!--<version>1.21</version>-->
-          <!--</dependency>-->
 
           <!-- file-upload -->
         <dependency>
